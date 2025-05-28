@@ -28,9 +28,9 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <MessageSquare className="mx-auto mb-6 h-16 w-16 text-blue-600" />
-            <h2 className="text-5xl font-bold text-black mb-6">
-              Gere Scripts Personalizados para WhatsApp
-            </h2>
+            <h1 className="text-5xl font-bold text-black mb-6">
+              Gere scripts campeões em agendar novos pacientes para sua clínica odontológica
+            </h1>
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               Transforme a comunicação da sua clínica odontológica com mensagens estratégicas, 
               humanas e persuasivas para cada etapa do relacionamento com seus pacientes.

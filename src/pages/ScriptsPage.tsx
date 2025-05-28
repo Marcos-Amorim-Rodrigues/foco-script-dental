@@ -15,7 +15,8 @@ import {
   Megaphone,
   Copy,
   Download,
-  ArrowLeft
+  ArrowLeft,
+  Shield
 } from "lucide-react";
 
 interface Script {
@@ -26,6 +27,7 @@ interface Script {
 
 const ScriptsPage = () => {
   const [scripts, setScripts] = useState<Script[]>([]);
+  const [objectionScripts, setObjectionScripts] = useState<Script[]>([]);
   const [clinicData, setClinicData] = useState<any>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -51,12 +53,25 @@ const ScriptsPage = () => {
     const data = JSON.parse(storedData);
     setClinicData(data);
     
-    const generatedScripts = generateScripts(data).map(script => ({
-      ...script,
-      icon: scriptIcons[script.fase as keyof typeof scriptIcons] || MessageSquare
-    }));
+    const generatedScripts = generateScripts(data);
     
-    setScripts(generatedScripts);
+    // Separate regular scripts from objection scripts
+    const regularScripts = generatedScripts
+      .filter(script => !script.fase.startsWith('Objeção:'))
+      .map(script => ({
+        ...script,
+        icon: scriptIcons[script.fase as keyof typeof scriptIcons] || MessageSquare
+      }));
+    
+    const objections = generatedScripts
+      .filter(script => script.fase.startsWith('Objeção:'))
+      .map(script => ({
+        ...script,
+        icon: Shield
+      }));
+    
+    setScripts(regularScripts);
+    setObjectionScripts(objections);
   }, [navigate]);
 
   const copyToClipboard = (text: string, fase: string) => {
@@ -68,7 +83,8 @@ const ScriptsPage = () => {
   };
 
   const exportScripts = () => {
-    const textContent = scripts.map(script => 
+    const allScripts = [...scripts, ...objectionScripts];
+    const textContent = allScripts.map(script => 
       `=== ${script.fase.toUpperCase()} ===\n\n${script.script}\n\n`
     ).join('');
     
@@ -161,6 +177,47 @@ const ScriptsPage = () => {
             );
           })}
         </div>
+
+        {/* Objection Scripts Section */}
+        {objectionScripts.length > 0 && (
+          <div className="mt-12">
+            <h3 className="text-2xl font-bold text-black mb-6 text-center">
+              🛡️ Quebras de objeções mais comuns sobre {clinicData.procedimentoPrincipal}
+            </h3>
+            <div className="grid lg:grid-cols-2 gap-6">
+              {objectionScripts.map((script, index) => {
+                const IconComponent = script.icon;
+                return (
+                  <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-orange-500">
+                    <CardHeader className="pb-4">
+                      <CardTitle className="flex items-center gap-3 text-black">
+                        <div className="p-2 rounded-lg bg-orange-100">
+                          <IconComponent className="h-5 w-5 text-orange-600" />
+                        </div>
+                        {script.fase.replace('Objeção: ', '')}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="bg-orange-50 p-4 rounded-lg mb-4">
+                        <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+                          {script.script}
+                        </p>
+                      </div>
+                      <Button
+                        onClick={() => copyToClipboard(script.script, script.fase)}
+                        variant="outline"
+                        className="w-full border-orange-200 text-orange-600 hover:bg-orange-50"
+                      >
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copiar Script
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Tips Section */}
         <div className="mt-12 bg-white rounded-2xl p-8 shadow-sm">

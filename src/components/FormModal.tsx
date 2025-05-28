@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
 import { useNavigate } from "react-router-dom";
@@ -20,8 +19,9 @@ interface FormData {
   nomeClinica: string;
   instagram: string;
   cidade: string;
+  telefone: string;
   faturamento: string;
-  procedimentos: string[];
+  procedimentoPrincipal: string;
   perfilPacientes: string;
   nomeSecretaria: string;
 }
@@ -44,8 +44,9 @@ const FormModal = ({ isOpen, onClose }: FormModalProps) => {
     nomeClinica: "",
     instagram: "",
     cidade: "",
+    telefone: "",
     faturamento: "",
-    procedimentos: [],
+    procedimentoPrincipal: "",
     perfilPacientes: "",
     nomeSecretaria: ""
   });
@@ -53,19 +54,10 @@ const FormModal = ({ isOpen, onClose }: FormModalProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const handleProcedimentoChange = (procedimento: string, checked: boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      procedimentos: checked 
-        ? [...prev.procedimentos, procedimento]
-        : prev.procedimentos.filter(p => p !== procedimento)
-    }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.nomeClinica || !formData.cidade || formData.procedimentos.length === 0) {
+    if (!formData.nomeClinica || !formData.cidade || !formData.telefone || !formData.procedimentoPrincipal) {
       toast({
         title: "Campos obrigatórios",
         description: "Por favor, preencha todos os campos obrigatórios.",
@@ -83,8 +75,9 @@ const FormModal = ({ isOpen, onClose }: FormModalProps) => {
         nome_clinica: formData.nomeClinica,
         instagram: formData.instagram,
         cidade: formData.cidade,
+        telefone: formData.telefone,
         faturamento: formData.faturamento || "Não informado",
-        procedimentos: formData.procedimentos.join(", "),
+        procedimento_principal: formData.procedimentoPrincipal,
         perfil_pacientes: formData.perfilPacientes,
         nome_secretaria: formData.nomeSecretaria || "Não informado"
       };
@@ -177,6 +170,41 @@ const FormModal = ({ isOpen, onClose }: FormModalProps) => {
             </div>
 
             <div>
+              <Label htmlFor="telefone" className="text-black font-medium">
+                Número de telefone (WhatsApp com DDD) *
+              </Label>
+              <Input
+                id="telefone"
+                type="tel"
+                value={formData.telefone}
+                onChange={(e) => setFormData(prev => ({ ...prev, telefone: e.target.value }))}
+                placeholder="Ex: (11) 99999-9999"
+                className="border-gray-200 focus:border-blue-600"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="procedimentoPrincipal" className="text-black font-medium">
+                Procedimento principal oferecido na clínica *
+              </Label>
+              <Select onValueChange={(value) => setFormData(prev => ({ ...prev, procedimentoPrincipal: value }))}>
+                <SelectTrigger className="border-gray-200 focus:border-blue-600">
+                  <SelectValue placeholder="Selecione um procedimento" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  {procedimentosOptions.map((procedimento) => (
+                    <SelectItem key={procedimento} value={procedimento}>
+                      {procedimento}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
               <Label htmlFor="faturamento" className="text-black font-medium">
                 Faturamento Mensal
               </Label>
@@ -191,29 +219,6 @@ const FormModal = ({ isOpen, onClose }: FormModalProps) => {
                   <SelectItem value="acima-200k">Acima de R$ 200.000</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-          </div>
-
-          <div>
-            <Label className="text-black font-medium mb-3 block">
-              Procedimentos Oferecidos *
-            </Label>
-            <div className="grid md:grid-cols-2 gap-3">
-              {procedimentosOptions.map((procedimento) => (
-                <div key={procedimento} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={procedimento}
-                    checked={formData.procedimentos.includes(procedimento)}
-                    onCheckedChange={(checked) => 
-                      handleProcedimentoChange(procedimento, checked as boolean)
-                    }
-                    className="border-gray-300"
-                  />
-                  <Label htmlFor={procedimento} className="text-sm text-gray-700">
-                    {procedimento}
-                  </Label>
-                </div>
-              ))}
             </div>
           </div>
 
