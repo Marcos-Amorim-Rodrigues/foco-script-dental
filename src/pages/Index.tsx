@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import FormModal from "@/components/FormModal";
@@ -79,7 +80,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="text-3xl font-bold text-black mb-8">
-              Scripts para Todas as Etapas do Atendimento
+              Scripts para todas as etapas do atendimento, incluindo quebras de objeções e mensagens campeãs para aumentar o agendamento de pacientes
             </h3>
             <div className="grid md:grid-cols-2 gap-6 text-left">
               <div className="bg-white p-6 rounded-xl shadow-sm">
