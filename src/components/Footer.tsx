@@ -14,7 +14,7 @@ const Footer = () => {
 
           {/* Section 2 - Center aligned */}
           <div className="text-center">
-            <h4 className="text-lg font-semibold mb-4">Links importantes</h4>
+            <h4 className="text-lg font-semibold mb-4 text-center px-[54px]">Links importantes</h4>
             <ul className="space-y-2">
               <li>
                 <a href="/politica-privacidade" className="text-gray-300 hover:text-blue-500 transition-colors">
@@ -31,7 +31,7 @@ const Footer = () => {
 
           {/* Section 3 - Right aligned */}
           <div className="text-right">
-            <h4 className="text-lg font-semibold mb-4">Contato</h4>
+            <h4 className="text-lg font-semibold mb-4 mx-0 px-[94px]">Contato</h4>
             <div className="space-y-2">
               <p className="text-gray-300">
                 <a href="mailto:contato@agenciafocomkt.com.br" className="hover:text-blue-500 transition-colors">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </a>
               </p>
               <p className="text-gray-300">
-                <a href="https://wa.me/5538988180075" className="hover:text-blue-500 transition-colors" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/5538988180075" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors px-[62px]">
                   (38) 98818-0075
                 </a>
               </p>

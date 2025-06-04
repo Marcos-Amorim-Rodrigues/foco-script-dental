@@ -11,9 +11,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <img src="/lovable-uploads/998adc47-d1d3-4c61-8f54-ad13ab2186d0.png" alt="Foco Marketing" className="h-20" />
-            <div className="text-sm text-gray-600">
-              by Foco Marketing
-            </div>
+            
           </div>
         </div>
       </header>
