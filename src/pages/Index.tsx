@@ -1,11 +1,15 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import FormModal from "@/components/FormModal";
 import Footer from "@/components/Footer";
 import { MessageSquare, Heart, Users } from "lucide-react";
+
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  return <div className="min-h-screen bg-white">
+
+  return (
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white border-b border-gray-100 py-4">
         <div className="container mx-auto px-4">
@@ -30,9 +34,15 @@ const Index = () => {
               Transforme a comunicação da sua clínica odontológica com mensagens estratégicas, 
               humanas e persuasivas para cada etapa do relacionamento com seus pacientes.
             </p>
-            <Button onClick={() => setIsModalOpen(true)} className="text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" style={{
-            backgroundColor: '#274587'
-          }} onMouseEnter={e => e.target.style.backgroundColor = '#1e3766'} onMouseLeave={e => e.target.style.backgroundColor = '#274587'}>
+            <Button 
+              onClick={() => setIsModalOpen(true)} 
+              className="text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" 
+              style={{
+                backgroundColor: '#274587'
+              }} 
+              onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#1e3766'} 
+              onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = '#274587'}
+            >
               Criar Meus Scripts Agora
             </Button>
           </div>
@@ -107,6 +117,8 @@ const Index = () => {
       <Footer />
 
       <FormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
