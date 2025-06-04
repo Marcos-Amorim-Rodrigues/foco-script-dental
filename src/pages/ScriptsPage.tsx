@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -134,7 +135,10 @@ const ScriptsPage = () => {
             </div>
             <Button 
               onClick={exportScripts}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="text-white"
+              style={{ backgroundColor: '#274587' }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#1e3766'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#274587'}
             >
               <Download className="h-4 w-4 mr-2" />
               Exportar Todos
@@ -153,7 +157,7 @@ const ScriptsPage = () => {
                 <CardHeader className="pb-4">
                   <CardTitle className="flex items-center gap-3 text-black">
                     <div className="p-2 rounded-lg bg-blue-100">
-                      <IconComponent className="h-5 w-5 text-blue-600" />
+                      <IconComponent className="h-5 w-5" style={{ color: '#274587' }} />
                     </div>
                     {script.fase}
                   </CardTitle>

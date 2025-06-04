@@ -9,9 +9,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Section 1 - Left aligned */}
           <div className="text-left">
-            <h3 className="text-xl font-bold mb-3">
-              Foco<span className="text-blue-500">Marketing</span>
-            </h3>
+            <img 
+              src="/lovable-uploads/4eaf69a0-3b14-41bc-9166-fbbdb88668f0.png" 
+              alt="Foco Marketing" 
+              className="h-8 mb-3"
+            />
             <p className="text-gray-300 leading-relaxed">
               Especialistas em marketing digital para clínicas odontológicas.
             </p>
@@ -23,7 +25,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="#politica-privacidade" 
+                  href="/politica-privacidade" 
                   className="text-gray-300 hover:text-blue-500 transition-colors"
                 >
                   Política de Privacidade
@@ -31,18 +33,10 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#termos-uso" 
+                  href="/termos-uso" 
                   className="text-gray-300 hover:text-blue-500 transition-colors"
                 >
                   Termos de Uso
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#contato" 
-                  className="text-gray-300 hover:text-blue-500 transition-colors"
-                >
-                  Contato
                 </a>
               </li>
             </ul>
@@ -54,18 +48,20 @@ const Footer = () => {
             <div className="space-y-2">
               <p className="text-gray-300">
                 <a 
-                  href="mailto:contato@focomarketing.com.br"
+                  href="mailto:contato@agenciafocomkt.com.br"
                   className="hover:text-blue-500 transition-colors"
                 >
-                  contato@focomarketing.com.br
+                  contato@agenciafocomkt.com.br
                 </a>
               </p>
               <p className="text-gray-300">
                 <a 
-                  href="tel:+5511999999999"
+                  href="https://wa.me/5538988180075"
                   className="hover:text-blue-500 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  (11) 99999-9999
+                  (38) 98818-0075
                 </a>
               </p>
             </div>
@@ -75,7 +71,7 @@ const Footer = () => {
         {/* Bottom line - Copyright */}
         <div className="border-t border-gray-800 pt-6">
           <p className="text-center text-gray-400">
-            © 2024 Foco Marketing. Todos os direitos reservados.
+            © 2025 Foco Marketing. Todos os direitos reservados.
           </p>
         </div>
       </div>

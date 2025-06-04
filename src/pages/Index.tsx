@@ -14,9 +14,11 @@ const Index = () => {
       <header className="bg-white border-b border-gray-100 py-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-black">
-              Foco<span className="text-blue-600">Scripts</span>
-            </h1>
+            <img 
+              src="/lovable-uploads/998adc47-d1d3-4c61-8f54-ad13ab2186d0.png" 
+              alt="Foco Marketing" 
+              className="h-8"
+            />
             <div className="text-sm text-gray-600">
               by Foco Marketing
             </div>
@@ -28,7 +30,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <MessageSquare className="mx-auto mb-6 h-16 w-16 text-blue-600" />
+            <MessageSquare className="mx-auto mb-6 h-16 w-16" style={{ color: '#274587' }} />
             <h1 className="text-5xl font-bold text-black mb-6">
               Gere scripts campeões em agendar novos pacientes para sua clínica odontológica
             </h1>
@@ -38,7 +40,10 @@ const Index = () => {
             </p>
             <Button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              style={{ backgroundColor: '#274587' }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#1e3766'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#274587'}
             >
               Criar Meus Scripts Agora
             </Button>
@@ -51,21 +56,21 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
-              <Heart className="mx-auto mb-4 h-12 w-12 text-blue-600" />
+              <Heart className="mx-auto mb-4 h-12 w-12" style={{ color: '#274587' }} />
               <h3 className="text-xl font-semibold text-black mb-3">Comunicação Humanizada</h3>
               <p className="text-gray-600">
                 Scripts naturais e acolhedores que fortalecem o relacionamento com seus pacientes.
               </p>
             </div>
             <div className="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
-              <Users className="mx-auto mb-4 h-12 w-12 text-blue-600" />
+              <Users className="mx-auto mb-4 h-12 w-12" style={{ color: '#274587' }} />
               <h3 className="text-xl font-semibold text-black mb-3">Totalmente Personalizado</h3>
               <p className="text-gray-600">
                 Adaptado ao perfil da sua clínica, procedimentos oferecidos e público-alvo.
               </p>
             </div>
             <div className="text-center p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
-              <MessageSquare className="mx-auto mb-4 h-12 w-12 text-blue-600" />
+              <MessageSquare className="mx-auto mb-4 h-12 w-12" style={{ color: '#274587' }} />
               <h3 className="text-xl font-semibold text-black mb-3">Estratégico e Eficaz</h3>
               <p className="text-gray-600">
                 Baseado em copywriting e psicologia para aumentar conversões e fidelização.
